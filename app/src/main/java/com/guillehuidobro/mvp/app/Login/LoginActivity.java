@@ -1,6 +1,6 @@
 /*
  *
- *  * Copyright (C) 2014 Antonio Leiva Gordillo.
+ *  * Copyright (C) 2016.
  *  *
  *  * Licensed under the Apache License, Version 2.0 (the "License");
  *  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import android.widget.ProgressBar;
 
 import com.guillehuidobro.mvp.app.R;
 import com.guillehuidobro.mvp.app.main.MainActivity;
+import com.guillehuidobro.mvp.app.picture.PictureActivity;
 
 public class LoginActivity extends Activity implements LoginView, View.OnClickListener {
 
@@ -71,7 +72,7 @@ public class LoginActivity extends Activity implements LoginView, View.OnClickLi
     }
 
     @Override public void navigateToHome() {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, PictureActivity.class));
         finish();
     }
 

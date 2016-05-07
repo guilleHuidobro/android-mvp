@@ -17,8 +17,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.guillehuidobro.mvp.app.main.MainActivity"
+            android:name=".main.MainActivity"
             android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name=".picture.PictureActivity"
+            android:label="@string/title_activity_picture" >
         </activity>
     </application>
 
