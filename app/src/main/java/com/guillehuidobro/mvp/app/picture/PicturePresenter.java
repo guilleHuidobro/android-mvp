@@ -5,4 +5,5 @@ package com.guillehuidobro.mvp.app.picture;
  */
 public interface PicturePresenter {
     void onDestroy();
+    void manageAction(boolean b);
 }

@@ -1,22 +1,32 @@
 package com.guillehuidobro.mvp.app.picture;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.guillehuidobro.mvp.app.R;
 import com.guillehuidobro.mvp.app.main.MainActivity;
+import com.guillehuidobro.mvp.app.utils.InterfaceCommon;
 
 public class PictureActivity extends Activity implements PictureView,View.OnClickListener{
+
+    PicturePresenter presenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture);
+
+        presenter = new PicturePresenterImpl(this);
+
         findViewById(R.id.button).setOnClickListener(this);
+        findViewById(R.id.toast_button).setOnClickListener(this);
     }
 
     @Override
@@ -47,8 +57,26 @@ public class PictureActivity extends Activity implements PictureView,View.OnClic
     }
 
     @Override
-    public void onClick(View view) {
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
+    public void showMessage(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
+
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+            case R.id.button:
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+                break;
+            case R.id.toast_button:
+                presenter.manageAction(true);
+                break;
+        }
+
+
+    }
+
+
 }
