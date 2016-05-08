@@ -22,10 +22,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.guillehuidobro.mvp.app.R;
 import com.guillehuidobro.mvp.app.main.MainActivity;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 
@@ -44,7 +47,7 @@ public class PictureActivity extends Activity implements PictureView,View.OnClic
     private ImageView mSetImage;
     private Button mOptionButton;
     private RelativeLayout mRlView;
-
+    private TextView urlText;
     private String mPath;
 
     PicturePresenter presenter;
@@ -59,15 +62,16 @@ public class PictureActivity extends Activity implements PictureView,View.OnClic
 
         mSetImage = (ImageView) findViewById(R.id.set_picture);
         mRlView = (RelativeLayout) findViewById(R.id.rl_view);
-
+        urlText = (TextView) findViewById(R.id.url_text);
         findViewById(R.id.show_options_button).setOnClickListener(this);
         findViewById(R.id.button).setOnClickListener(this);
         findViewById(R.id.toast_button).setOnClickListener(this);
-
+/*
         if(mayRequestStoragePermission())
-            mOptionButton.setEnabled(true);
+            findViewById(R.id.show_options_button).setEnabled(true);
         else
-            mOptionButton.setEnabled(false);
+            findViewById(R.id.show_options_button).setEnabled(false);
+            */
     }
 
     @Override
@@ -235,10 +239,12 @@ public class PictureActivity extends Activity implements PictureView,View.OnClic
 
                     Bitmap bitmap = BitmapFactory.decodeFile(mPath);
                     mSetImage.setImageBitmap(bitmap);
+                    urlText.setText(mPath.toString());
                     break;
                 case SELECT_PICTURE:
                     Uri path = data.getData();
                     mSetImage.setImageURI(path);
+                    urlText.setText(path.toString());
                     break;
 
             }
