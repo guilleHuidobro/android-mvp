@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +53,9 @@ public class PictureActivity extends Activity implements PictureView,View.OnClic
 
     PicturePresenter presenter;
 
+    private ShareActionProvider mShareActionProvider;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,7 @@ public class PictureActivity extends Activity implements PictureView,View.OnClic
         findViewById(R.id.show_options_button).setOnClickListener(this);
         findViewById(R.id.button).setOnClickListener(this);
         findViewById(R.id.toast_button).setOnClickListener(this);
+        findViewById(R.id.send_button).setOnClickListener(this);
 /*
         if(mayRequestStoragePermission())
             findViewById(R.id.show_options_button).setEnabled(true);
@@ -78,7 +83,16 @@ public class PictureActivity extends Activity implements PictureView,View.OnClic
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_picture, menu);
+
+        // Locate MenuItem with ShareActionProvider
+        MenuItem item = menu.findItem(R.id.menu_item_share);
+
+        // Fetch and store ShareActionProvider
+        mShareActionProvider = (ShareActionProvider) item.getActionProvider();
+
+        // Return true to display menu
         return true;
+
     }
 
     @Override
@@ -89,7 +103,8 @@ public class PictureActivity extends Activity implements PictureView,View.OnClic
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.menu_item_share) {
+            sendAction();
             return true;
         }
 
@@ -121,9 +136,27 @@ public class PictureActivity extends Activity implements PictureView,View.OnClic
             case R.id.show_options_button:
                 showOptions();
                 break;
+            case R.id.send_button:
+                sendAction();
+                break;
         }
 
 
+    }
+
+    // Call to update the share intent
+    private void setShareIntent(Intent shareIntent) {
+        if (mShareActionProvider != null) {
+            mShareActionProvider.setShareIntent(shareIntent);
+        }
+    }
+
+    private void sendAction(){
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, "algo"));
     }
 
     private boolean mayRequestStoragePermission() {
@@ -264,6 +297,8 @@ public class PictureActivity extends Activity implements PictureView,View.OnClic
             showExplanation();
         }
     }
+
+
 
     private void showExplanation() {
         AlertDialog.Builder builder = new AlertDialog.Builder(PictureActivity.this);

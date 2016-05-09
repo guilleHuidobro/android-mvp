@@ -19,6 +19,7 @@
 package com.guillehuidobro.mvp.app.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -65,6 +66,11 @@ public class MainActivity extends Activity implements MainView, AdapterView.OnIt
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.setType("text/plain");
+                startActivity(Intent.createChooser(sendIntent, "algo"));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
