@@ -12,4 +12,5 @@
     <string name="password_error">Password cannot be empty</string>
     <string name="title_activity_picture">Picture Activity</string>
     <string name="button">to list</string>
+    <string name="title_activity_crono">CronoActivity</string>
 </resources>

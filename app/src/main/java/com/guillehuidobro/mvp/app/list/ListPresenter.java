@@ -16,17 +16,13 @@
  *
  */
 
-package com.guillehuidobro.mvp.app.main;
+package com.guillehuidobro.mvp.app.list;
 
-import java.util.List;
+public interface ListPresenter {
 
-public interface MainView {
+    void onResume();
 
-    void showProgress();
+    void onItemClicked(int position);
 
-    void hideProgress();
-
-    void setItems(List<String> items);
-
-    void showMessage(String message);
+    void onDestroy();
 }

@@ -72,7 +72,7 @@ public class LoginActivity extends Activity implements LoginView, View.OnClickLi
     }
 
     @Override public void navigateToHome() {
-        startActivity(new Intent(this, PictureActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 

@@ -16,16 +16,16 @@
  *
  */
 
-package com.guillehuidobro.mvp.app.main;
+package com.guillehuidobro.mvp.app.list;
 
 import java.util.List;
 
-public class MainPresenterImpl implements MainPresenter, FindItemsInteractor.OnFinishedListener {
+public class ListPresenterImpl implements ListPresenter, FindItemsInteractor.OnFinishedListener {
 
-    private MainView mainView;
+    private ListView mainView;
     private FindItemsInteractor findItemsInteractor;
 
-    public MainPresenterImpl(MainView mainView) {
+    public ListPresenterImpl(ListView mainView) {
         this.mainView = mainView;
         findItemsInteractor = new FindItemsInteractorImpl();
     }

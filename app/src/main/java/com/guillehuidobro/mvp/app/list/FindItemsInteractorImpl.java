@@ -16,7 +16,7 @@
  *
  */
 
-package com.guillehuidobro.mvp.app.main;
+package com.guillehuidobro.mvp.app.list;
 
 import android.os.Handler;
 

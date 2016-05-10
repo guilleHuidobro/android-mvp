@@ -27,9 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.guillehuidobro.mvp.app.R;
-import com.guillehuidobro.mvp.app.main.MainActivity;
-
-import org.w3c.dom.Text;
+import com.guillehuidobro.mvp.app.list.ListActivity;
 
 import java.io.File;
 
@@ -127,7 +125,7 @@ public class PictureActivity extends Activity implements PictureView,View.OnClic
 
         switch (view.getId()){
             case R.id.button:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, ListActivity.class));
                 finish();
                 break;
             case R.id.toast_button:
